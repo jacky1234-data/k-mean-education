@@ -45,7 +45,7 @@ def assign_group(df, centroids):
     all_groups = ["A","B","C","D","E"]
     for i in range(nrow):
         cur_point = [df.loc[i,"x"], df.loc[i,"y"]]
-        df.loc[i,"group"] = find_close_centroid(cur_point,centroids)
+        df.loc[i,"group"] = find_close_centroid(cur_point, centroids, all_groups)
     return df
 
 #Recalculate centroids
