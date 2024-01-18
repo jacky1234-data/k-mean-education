@@ -53,14 +53,14 @@ def assign_group(df, centroids):
 #Recalculate centroids
 def recal_centroid(df):
     all_groups = list(set(df["group"]))
+    all_groups.sort()
     table = []
     for each in all_groups:
         df_each = df[df["group"]==each]
         x_cent = df_each["x"].mean()
         y_cent = df_each["y"].mean()
-        table.append([each, x_cent, y_cent])
-        table_sorted = sorted(table, key=lambda x: x[0])
-    return [[i[1],i[2]] for i in table_sorted]
+        table.append([x_cent, y_cent])
+    return table
 
 #Check if any pair of centroids are too close
 def check_distance(centroids):
