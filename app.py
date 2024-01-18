@@ -14,7 +14,6 @@ plt.switch_backend('Agg')
 
 #Some global data and the dataset
 k_values = [i for i in range(2,6)]
-click = 0
 
 data = pd.read_csv("datapoints.csv") #Use your own path
 
@@ -55,8 +54,8 @@ def recal_centroid(df):
     table = []
     for each in all_groups:
         df_each = df.loc[df["group"]==each]
-        x_cent = df_each["x"].mean()
-        y_cent = df_each["y"].mean()
+        x_cent = int(df_each["x"].mean())
+        y_cent = int(df_each["y"].mean())
         table.append([x_cent, y_cent])
     return table
 
@@ -156,18 +155,15 @@ def predict():
 
     elif click <= 40: #Continue iteration
         prev_centroids = all_centroids[:]
-        prev_centroids = [[int(prev_centroids[nr][nc]) for nc in range(len(prev_centroids[0]))] for nr in range(len(prev_centroids))]
         all_centroids = recal_centroid(cur_data)
         cur_data = assign_group(cur_data, all_centroids)
         graph = plot_grouped(cur_data)
-        all_centroids = [[int(all_centroids[nr][nc]) for nc in range(len(all_centroids[0]))] for nr in range(len(all_centroids))]
         convergence = "Convergence is reached!" if prev_centroids == all_centroids else ""
 
     else: #Stop adjusting centroids after 40 iterations
         graph = plot_grouped(cur_data)
-        all_centroids = [[int(all_centroids[nr][nc]) for nc in range(len(all_centroids[0]))] for nr in range(len(all_centroids))]
 
-
+    
     num_k = len(all_centroids)
     click_message = "You exceeded the maximum number (40) of iteration and there will be no more changes." \
           if click > 40 else "Number of iteration: {}".format(click)
