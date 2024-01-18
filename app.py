@@ -6,8 +6,6 @@ import os
 import base64
 import io
 
-pd.options.mode.chained_assignment = None
-
 #Initialize the flask App
 app = Flask(__name__)
 
@@ -46,8 +44,8 @@ def assign_group(df, centroids):
     df["group"] = "n/a"
     all_groups = ["A","B","C","D","E"]
     for i in range(nrow):
-        cur_point = [df["x"][i], df["y"][i]]
-        df["group"][i] = find_close_centroid(cur_point,centroids,all_groups)
+        cur_point = [df.loc[i,"x"], df.loc[i,"y"]]
+        df.loc[i,"group"] = find_close_centroid(cur_point,centroids)
     return df
 
 #Recalculate centroids
