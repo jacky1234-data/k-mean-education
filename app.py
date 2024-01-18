@@ -6,6 +6,8 @@ import os
 import base64
 import io
 
+pd.options.mode.chained_assignment = None
+
 #Initialize the flask App
 app = Flask(__name__)
 
