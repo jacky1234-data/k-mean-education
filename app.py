@@ -14,6 +14,7 @@ plt.switch_backend('Agg')
 
 #Some global data and the dataset
 k_values = [i for i in range(2,6)]
+click = 0
 
 data = pd.read_csv("datapoints.csv") #Use your own path
 
