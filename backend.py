@@ -15,8 +15,8 @@ plt.switch_backend('Agg')
 #Some global data and the dataset
 k_values = [i for i in range(2,6)]
 click = 0
-path = "D:\\Original-comp-edisk\\class material\\Professional Development\\k-mean showcase\\" #Use your own path
-data = pd.read_csv(path + "datapoints.csv")
+
+data = pd.read_csv("datapoints.csv")
 
 #Calculate the Euclidean distance
 def cal_distance(pointA, pointB):
